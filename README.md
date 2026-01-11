@@ -5,7 +5,6 @@ ___
 ## Running
 ___ 
 The repository provides a server
-
 ```bash
 RUST_LOG=debug cargo run --release
 ```
