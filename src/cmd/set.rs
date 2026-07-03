@@ -34,7 +34,7 @@ impl Set {
             }
             Ok(_) => return Err("currently `SET` only supports the expiration option".into()),
             Err(CacheError::EndOfStream) => {}
-            Err(err) => return Err(err.into()),
+            Err(err) => return Err(err),
         }
 
         Ok(Set { key, value, expire })

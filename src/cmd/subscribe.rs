@@ -32,7 +32,7 @@ impl Subscribe {
             match parse.next_string() {
                 Ok(s) => channels.push(s),
                 Err(CacheError::EndOfStream) => break,
-                Err(err) => return Err(err.into()),
+                Err(err) => return Err(err),
             }
         }
         Ok(Subscribe { channels })
@@ -108,7 +108,7 @@ async fn handle_command(
 ) -> Result<(), CacheError> {
     match Command::from_frame(frame)? {
         Command::Subscribe(subscribe) => {
-            subscribe_to.extend(subscribe.channels.into_iter());
+            subscribe_to.extend(subscribe.channels);
         }
         Command::Unsubscribe(mut unsubscribe) => {
             if unsubscribe.channels.is_empty() {

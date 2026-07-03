@@ -94,10 +94,10 @@ impl Db {
             },
         );
 
-        if let Some(prev) = prev {
-            if let Some(when) = prev.expires_at {
-                state.expirations.remove(&(when, key.clone()));
-            }
+        if let Some(prev) = prev
+            && let Some(when) = prev.expires_at
+        {
+            state.expirations.remove(&(when, key.clone()));
         }
 
         if let Some(when) = expires_at {

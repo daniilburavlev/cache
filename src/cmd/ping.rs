@@ -17,7 +17,7 @@ impl Ping {
         match parse.next_bytes() {
             Ok(msg) => Ok(Ping::new(Some(msg))),
             Err(CacheError::EndOfStream) => Ok(Ping::default()),
-            Err(e) => Err(e.into()),
+            Err(e) => Err(e),
         }
     }
 
